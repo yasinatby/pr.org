@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PepeRich - In Entwicklung</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <style>
+        /* Canvas für den Hintergrund */
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Grundlegendes Styling */
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* Hauptbereich Styling */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 120px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #007bff;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .in-dev {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 50px;
+        }
+
+        /* Fußbereich */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+        }
+
+        /* Cooles animiertes Element */
+        .pulse {
+            animation: pulseEffect 2s infinite ease-in-out;
+            font-size: 2rem;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        @keyframes pulseEffect {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#">Start</a>
+        <a href="#">Über Uns</a>
+        <a href="#">Warum PepeRich?</a>
+        <a href="#">Roadmap</a>
+        <a href="#">Kontakt</a>
+    </nav>
+
+    <!-- Canvas für den neuronalen Netz Hintergrund -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Hauptinhalt der Seite -->
+    <div class="container">
+        <h1>PepeRich</h1>
+        <p>Die Zukunft der Zahlungen</p>
+        <p class="in-dev">Projekt in Entwicklung – demnächst verfügbar!</p>
+        <div class="message">Bleibe gespannt auf die neuesten Updates!</div>
+
+        <!-- Cooles pulsierendes Element -->
+        <div class="pulse">🚀 PepeRich ist auf dem Weg! 🚀</div>
+    </div>
+
+    <!-- Fußbereich -->
+    <div class="footer">
+        <p>© 2025 PepeRich - Alle Rechte vorbehalten</p>
+    </div>
+
+    <script>
+        // Canvas initialisieren
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Canvas auf die Bildschirmgröße einstellen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Neuronale Netzwerkpunkte erstellen
+        let points = [];
+        let numPoints = 100;
+        let maxDistance = 200;
+        let lineOpacity = 0.6;
+
+        // Funktion zum Erstellen der Punkte
+        function createPoints() {
+            points = [];
+            for (let i = 0; i < numPoints; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height
+                });
+            }
+        }
+
+        // Funktion zum Zeichnen der Linien
+        function drawLines() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    let dx = points[i].x - points[j].x;
+                    let dy = points[i].y - points[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    // Linien nur zeichnen, wenn sie nahe genug sind
+                    if (distance < maxDistance) {
+                        let opacity = (1 - distance / maxDistance) * lineOpacity;
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.strokeStyle = `rgba(0, 123, 255, ${opacity})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Funktion zum Animieren der Punkte
+        function animate() {
+            createPoints();
+            setInterval(() => {
+                drawLines();
+            }, 30); // Linie alle 30ms neu zeichnen
+        }
+
+        animate();
+
+        // Responsives Canvas bei Fensteränderung
+        window.addEventListener('resize', function () {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            animate();
+        });
+
+        // Mausbewegung zur Interaktion mit Hintergrund
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Linie zwischen Maus und Punkten ziehen
+            points.forEach(point => {
+                let dx = mouseX - point.x;
+                let dy = mouseY - point.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 150) {
+                    point.x += dx * 0.05;
+                    point.y += dy * 0.05;
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
