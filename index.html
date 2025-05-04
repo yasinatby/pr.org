@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PepeRich - In Entwicklung</title>
+    <title>PepeReich - In Entwicklung</title>
     <link href="dist/output.css" rel="stylesheet">
     <style>
         /* Canvas für den Hintergrund */
@@ -23,10 +23,6 @@
             color: white;
             margin: 0;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
         }
 
         /* Navigation Bar */
@@ -38,7 +34,7 @@
             background-color: rgba(0, 0, 0, 0.6);
             padding: 20px;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             z-index: 10;
         }
@@ -48,7 +44,6 @@
             font-size: 1.2rem;
             text-decoration: none;
             font-weight: 600;
-            margin: 0 20px;
             transition: color 0.3s ease;
         }
 
@@ -56,44 +51,9 @@
             color: #007bff;
         }
 
-        /* Sektionen */
-        section {
-            width: 100%;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        /* Start-Sektion */
-        #start {
-            background-color: #2d2d2d;
-        }
-
-        /* Über Uns Sektion */
-        #about {
-            background-color: #393939;
-        }
-
-        /* Warum PepeRich? Sektion */
-        #why {
-            background-color: #464646;
-        }
-
-        /* Roadmap Sektion */
-        #roadmap {
-            background-color: #535353;
-        }
-
-        /* Kontakt Sektion */
-        #contact {
-            background-color: #606060;
-        }
-
-        /* Grundlegendes Styling */
+        /* Hauptbereich Styling */
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            text-align: center;
             padding-top: 120px;
         }
 
@@ -173,44 +133,26 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#start">Start</a>
-        <a href="#about">Über Uns</a>
-        <a href="#why">Warum PepeRich?</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#contact">Kontakt</a>
+        <a href="#">Start</a>
+        <a href="#">Über Uns</a>
+        <a href="#">Warum PepeRich?</a>
+        <a href="#">Roadmap</a>
+        <a href="#">Kontakt</a>
     </nav>
 
     <!-- Canvas für den neuronalen Netz Hintergrund -->
     <canvas id="canvas"></canvas>
 
-    <!-- Sektionen -->
-    <section id="start">
-        <h1>PepeRich</h1>
+    <!-- Hauptinhalt der Seite -->
+    <div class="container">
+        <h1>PepeReich</h1>
         <p>Die Zukunft der Zahlungen</p>
         <p class="in-dev">Projekt in Entwicklung – demnächst verfügbar!</p>
         <div class="message">Bleibe gespannt auf die neuesten Updates!</div>
+
+        <!-- Cooles pulsierendes Element -->
         <div class="pulse">🚀 PepeRich ist auf dem Weg! 🚀</div>
-    </section>
-
-    <section id="about">
-        <h2>Über Uns</h2>
-        <p>Wir sind ein innovatives Start-up aus Studenten der Wirtschaft und Software Engineering, das ein revolutionäres Zahlungssystem entwickelt.</p>
-    </section>
-
-    <section id="why">
-        <h2>Warum PepeRich?</h2>
-        <p>Unser Ziel ist es, ein Zahlungssystem zu schaffen, das weltweit ohne Gebühren funktioniert, schnell und sicher!</p>
-    </section>
-
-    <section id="roadmap">
-        <h2>Roadmap</h2>
-        <p>Unsere Reise hat gerade erst begonnen! Hier sind die nächsten Schritte, die wir gemeinsam erreichen wollen.</p>
-    </section>
-
-    <section id="contact">
-        <h2>Kontakt</h2>
-        <p>Hast du Fragen? Kontaktiere uns!</p>
-    </section>
+    </div>
 
     <!-- Fußbereich -->
     <div class="footer">
@@ -300,6 +242,7 @@
                 }
             });
         });
+
     </script>
 
 </body>
